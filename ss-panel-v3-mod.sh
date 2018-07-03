@@ -305,11 +305,11 @@ install_node_glzjin(){
 	# 取消文件数量限制
 	sed -i '$a * hard nofile 512000\n* soft nofile 512000' /etc/security/limits.conf
 	# 更改设置
-	read -p "Please input your Node_ID=: " UserNODE_ID
-	read -p "Please input your MYSQL_HOST: " MYSQL_HOST
-	read -p "Please input your MYSQL_USER: " MYSQL_USER
-	read -p "Please input your MYSQL_PASS: " MYSQL_PASS
-	read -p "Please input your MYSQL_DB: " MYSQL_DB
+	#read -p "Please input your Node_ID=: " UserNODE_ID
+	#read -p "Please input your MYSQL_HOST: " MYSQL_HOST
+	#read -p "Please input your MYSQL_USER: " MYSQL_USER
+	#read -p "Please input your MYSQL_PASS: " MYSQL_PASS
+	#read -p "Please input your MYSQL_DB: " MYSQL_DB
 	install_ssr_for_each
 	cd /root/shadowsocks
 	echo -e "modify Config.py...\n"
