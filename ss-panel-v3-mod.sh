@@ -136,7 +136,7 @@ install_centos_ssr(){
 	./configure && make -j2 && make install
 	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 	ldconfig
-	git clone -b manyuser https://github.com/glzjin/shadowsocks.git "/root/shadowsocks"
+	git clone -b manyuser https://github.com/dumplin233/shadowsocks.git "/root/shadowsocks"
 	cd /root/shadowsocks
 	chkconfig supervisord on
 	# 启用supervisord
@@ -186,7 +186,7 @@ install_ubuntu_ssr(){
 	apt-get install python-pip git -y
 	pip install cymysql
 	cd /root
-	git clone -b manyuser https://github.com/glzjin/shadowsocks.git "/root/shadowsocks"
+	git clone -b manyuser https://github.com/dumplin233/shadowsocks.git "/root/shadowsocks"
 	cd shadowsocks
 	pip install -r requirements.txt
 	chmod +x *.sh
@@ -318,6 +318,9 @@ install_node_glzjin(){
 	# UserNODE_ID
 	sed -i '3d' /root/shadowsocks/userapiconfig.py
 	sed -i "3i\NODE_ID = ${UserNODE_ID}" /root/shadowsocks/userapiconfig.py
+	# SPEEDTEST
+	sed -i '6d' /root/shadowsocks/userapiconfig.py
+	sed -i "6i\SPEEDTEST = 0" /root/shadowsocks/userapiconfig.py
 	# API_INTERFACE
 	sed -i '15d' /root/shadowsocks/userapiconfig.py
 	sed -i "15i\API_INTERFACE = 'glzjinmod'" /root/shadowsocks/userapiconfig.py
