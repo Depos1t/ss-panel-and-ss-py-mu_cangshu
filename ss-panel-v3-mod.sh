@@ -393,11 +393,15 @@ install_panel_and_node(){
 	echo "# 3  SS-node_glzjin One click Install                       #"
 	echo "#############################################################"
 	echo
-ARGS=`getopt --long UserNODE_ID:,MYSQL_HOST:,MYSQL_USER:,MYSQL_PASS:,MYSQL_DB: -- "$@"`
+ARGS=`getopt --long mode:,UserNODE_ID:,MYSQL_HOST:,MYSQL_USER:,MYSQL_PASS:,MYSQL_DB: -- "$@"`
 if [ $? != 0 ] ; then echo "Terminating..." >&2 ; exit 1 ; fi
 while true;
 do
     case "$1" in
+	--mode)  
+		mode=$2  
+		shift 2
+		;;
 	--UserNODE_ID)  
 		UserNODE_ID=$2  
 		shift 2
@@ -431,7 +435,8 @@ num=$1
 if [ "${num}" == "1" ]; then
     install_panel_and_node 1
 else
-    stty erase '^H' && read -p " 请输入数字 [1-2]:" num
+    #stty erase '^H' && read -p " 请输入数字 [1-2]:" num
+    num=mode
 		case "$num" in
 		1)
 		install_panel_and_node
