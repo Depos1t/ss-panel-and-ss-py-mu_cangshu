@@ -171,6 +171,7 @@ install_centos_ssr(){
 	systemctl disable firewalld.service
 	cp apiconfig.py userapiconfig.py
 	cp config.json user-config.json
+	echo '0 4 * * * supervisorctl reload' >> /var/spool/cron/root
 }
 install_ubuntu_ssr(){
 	apt-get update -y
@@ -195,7 +196,7 @@ install_ubuntu_ssr(){
 	sed -i '$a [program:ssr]\ncommand = python /root/shadowsocks/server.py\nuser = root\nautostart = true\nautorestart = true' /etc/supervisor/supervisord.conf
 	sed -i '$a ulimit -SHn 40960' /etc/profile
 	sed -i '12aminfds=512000                  ; (min. avail startup file descriptors;default 1024)' /etc/supervisor/supervisord.conf
-
+	echo '0 4 * * * supervisorctl reload' >> /var/spool/cron/crontabs/root
 }
 install_node(){
 	clear
