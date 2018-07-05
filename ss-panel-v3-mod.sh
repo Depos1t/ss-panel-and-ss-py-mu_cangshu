@@ -441,7 +441,7 @@ if [ "${num}" == "1" ]; then
     install_panel_and_node 1
 else
     #stty erase '^H' && read -p " 请输入数字 [1-2]:" num
-    num=mode
+    num=$mode
 		case "$num" in
 		1)
 		install_panel_and_node
