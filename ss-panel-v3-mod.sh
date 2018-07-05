@@ -130,7 +130,6 @@ install_centos_ssr(){
     supervisord
 	fi
 	pip install --upgrade pip
-	Libtest
 	wget --no-check-certificate $libAddr
 	tar xf libsodium-1.0.13.tar.gz && cd libsodium-1.0.13
 	./configure && make -j2 && make install
@@ -194,6 +193,7 @@ install_ubuntu_ssr(){
 	cp apiconfig.py userapiconfig.py
 	cp config.json user-config.json
 	sed -i '$a [program:ssr]\ncommand = python /root/shadowsocks/server.py\nuser = root\nautostart = true\nautorestart = true' /etc/supervisor/supervisord.conf
+	sed -i '$a ulimit -SHn 40960' /etc/profile
 }
 install_node(){
 	clear
@@ -225,6 +225,7 @@ install_node(){
 	  fi
 	}
 	install_ssr_for_each(){
+		Libtest
 		check_sys
 		if [[ ${release} = "centos" ]]; then
 			install_centos_ssr
@@ -295,6 +296,7 @@ install_node_glzjin(){
 	  fi
 	}
 	install_ssr_for_each(){
+		Libtest
 		check_sys
 		if [[ ${release} = "centos" ]]; then
 			install_centos_ssr
@@ -316,8 +318,8 @@ install_node_glzjin(){
 	# MU_SUFFIX
 	sed -i "s#'zhaoj.in'#'jd.hk'#" /root/shadowsocks/userapiconfig.py
 	# UserNODE_ID
-	sed -i '2d' /root/shadowsocks/userapiconfig.py
-	sed -i "2i\NODE_ID = ${UserNODE_ID}" /root/shadowsocks/userapiconfig.py
+	sed -i '3d' /root/shadowsocks/userapiconfig.py
+	sed -i "3i\NODE_ID = ${UserNODE_ID}" /root/shadowsocks/userapiconfig.py
 	# SPEEDTEST
 	sed -i '6d' /root/shadowsocks/userapiconfig.py
 	sed -i "6i\SPEEDTEST = 0" /root/shadowsocks/userapiconfig.py
@@ -436,7 +438,7 @@ if [ "${num}" == "1" ]; then
     install_panel_and_node 1
 else
     #stty erase '^H' && read -p " 请输入数字 [1-2]:" num
-    num=$mode
+    num=mode
 		case "$num" in
 		1)
 		install_panel_and_node
