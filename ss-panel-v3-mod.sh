@@ -194,6 +194,8 @@ install_ubuntu_ssr(){
 	cp config.json user-config.json
 	sed -i '$a [program:ssr]\ncommand = python /root/shadowsocks/server.py\nuser = root\nautostart = true\nautorestart = true' /etc/supervisor/supervisord.conf
 	sed -i '$a ulimit -SHn 40960' /etc/profile
+	sed -i '12aminfds=512000                  ; (min. avail startup file descriptors;default 1024)' /etc/supervisor/supervisord.conf
+
 }
 install_node(){
 	clear
