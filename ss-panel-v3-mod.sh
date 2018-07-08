@@ -321,8 +321,8 @@ install_node_glzjin(){
 	# MU_SUFFIX
 	sed -i "s#'zhaoj.in'#'jd.hk'#" /root/shadowsocks/userapiconfig.py
 	# UserNODE_ID
-	sed -i '3d' /root/shadowsocks/userapiconfig.py
-	sed -i "3i\NODE_ID = ${UserNODE_ID}" /root/shadowsocks/userapiconfig.py
+	sed -i '2d' /root/shadowsocks/userapiconfig.py
+	sed -i "2i\NODE_ID = ${UserNODE_ID}" /root/shadowsocks/userapiconfig.py
 	# SPEEDTEST
 	sed -i '6d' /root/shadowsocks/userapiconfig.py
 	sed -i "6i\SPEEDTEST = 0" /root/shadowsocks/userapiconfig.py
