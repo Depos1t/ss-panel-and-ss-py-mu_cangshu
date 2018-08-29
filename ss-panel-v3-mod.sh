@@ -106,6 +106,7 @@ install_centos_ssr(){
 	yum -y groupinstall "Development Tools" 
 	#第一次yum安装 supervisor pip
 	yum -y install supervisor python-pip
+	pip install --upgrade pip
 	supervisord
 	#第二次pip supervisor是否安装成功
 	if [ -z "`pip`" ]; then
@@ -184,6 +185,7 @@ install_ubuntu_ssr(){
 	echo /usr/local/lib > /etc/ld.so.conf.d/usr_local_lib.conf
 	ldconfig
 	apt-get install python-pip git -y
+	pip install --upgrade pip
 	pip install cymysql
 	cd /root
 	git clone -b manyuser https://github.com/dumplin233/shadowsocks.git "/root/shadowsocks"
