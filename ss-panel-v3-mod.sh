@@ -318,6 +318,7 @@ install_node_glzjin(){
 	#read -p "Please input your MYSQL_PASS: " MYSQL_PASS
 	#read -p "Please input your MYSQL_DB: " MYSQL_DB
 	install_ssr_for_each
+	pip install cymysql
 	cd /root/shadowsocks
 	echo -e "modify Config.py...\n"
 	# MU_SUFFIX
