@@ -175,7 +175,7 @@ install_centos_ssr(){
 	echo '0 4 * * * supervisorctl reload' >> /var/spool/cron/root
 }
 install_ubuntu_ssr(){
-	apt-get update -y
+	#apt-get update -y
 	apt-get install supervisor lsof -y
 	apt-get install build-essential wget -y
 	apt-get install iptables git -y
